@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Post Card & Style using CSS</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 10% 20%,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 20, 40, 0.95) 50%,
+            rgba(0, 40, 80, 1) 100%
+          ),
+          linear-gradient(135deg, #000428 0%, #004e92 100%);
+        padding: 30px 20px;
+        position: relative;
+      }
+
+      /* Animated background effect */
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 30% 50%,
+          rgba(0, 100, 200, 0.1) 0%,
+          transparent 50%
+        );
+        animation: pulse 8s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      h1 {
+        text-align: center;
+        margin: 30px 0;
+        color: transparent;
+        font-size: 3rem;
+        text-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+        letter-spacing: 3px;
+        position: relative;
+        background: linear-gradient(135deg, #fff 0%, #4facfe 50%, #00f2fe 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: titleGlow 3s ease-in-out infinite;
+      }
+
+      @keyframes titleGlow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 5px #00f2fe);
+        }
+        50% {
+          filter: drop-shadow(0 0 20px #4facfe);
+        }
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 40px 0;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 10;
+      }
+
+      button {
+        padding: 14px 35px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        overflow: hidden;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0, 150, 255, 0.3);
+      }
+
+      button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      button:hover::before {
+        left: 100%;
+      }
+
+      button:first-child {
+        background: linear-gradient(135deg, #000428, #004e92, #00a8ff);
+        background-size: 200% 200%;
+        animation: gradientShift 5s ease infinite;
+      }
+
+      button:last-child {
+        background: linear-gradient(135deg, #001f3f, #003366, #0066cc);
+        background-size: 200% 200%;
+        animation: gradientShift 5s ease infinite reverse;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(0, 150, 255, 0.5);
+      }
+
+      button:active {
+        transform: translateY(-2px) scale(1.02);
+      }
+
+      #post-container {
+        max-width: 1400px;
+        margin: 50px auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-gap: 35px;
+        padding: 20px;
+        position: relative;
+        z-index: 10;
+      }
+
+      .post-card {
+        padding: 30px;
+        border-radius: 20px;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        animation: fadeInUp 0.6s ease;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(0, 150, 255, 0.2);
+        height: 100%;
+      }
+
+      /* Beautiful blue and black mixed gradients */
+      .post-card:nth-child(6n + 1) {
+        background: linear-gradient(145deg, #000b1c, #001f3f, #003366);
+        box-shadow: 0 15px 35px rgba(0, 100, 255, 0.3);
+      }
+
+      .post-card:nth-child(6n + 2) {
+        background: linear-gradient(145deg, #001122, #002244, #004488);
+        box-shadow: 0 15px 35px rgba(0, 150, 255, 0.4);
+      }
+
+      .post-card:nth-child(6n + 3) {
+        background: linear-gradient(145deg, #001a33, #002b4d, #004080);
+        box-shadow: 0 15px 35px rgba(0, 200, 255, 0.3);
+      }
+
+      .post-card:nth-child(6n + 4) {
+        background: linear-gradient(145deg, #000d1a, #00263b, #00509e);
+        box-shadow: 0 15px 35px rgba(0, 120, 255, 0.4);
+      }
+
+      .post-card:nth-child(6n + 5) {
+        background: linear-gradient(145deg, #001428, #003366, #0066aa);
+        box-shadow: 0 15px 35px rgba(0, 180, 255, 0.3);
+      }
+
+      .post-card:nth-child(6n + 6) {
+        background: linear-gradient(145deg, #000c1f, #002952, #0077be);
+        box-shadow: 0 15px 35px rgba(0, 140, 255, 0.4);
+      }
+
+      /* Shimmer effect on cards */
+      .post-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+
+      .post-card:hover::after {
+        opacity: 1;
+      }
+
+      .post-card:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 30px 50px rgba(0, 150, 255, 0.5);
+        border: 1px solid rgba(0, 200, 255, 0.4);
+      }
+
+      .post-card h2 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+        border-bottom: 2px solid rgba(0, 200, 255, 0.3);
+        padding-bottom: 12px;
+        text-transform: capitalize;
+        text-shadow: 0 2px 10px rgba(0, 150, 255, 0.5);
+        position: relative;
+      }
+
+      .post-card h2::before {
+        content: "⚡";
+        position: absolute;
+        left: -25px;
+        opacity: 0;
+        transition:
+          opacity 0.3s ease,
+          left 0.3s ease;
+      }
+
+      .post-card:hover h2::before {
+        opacity: 1;
+        left: -15px;
+      }
+
+      .post-card p {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.8;
+        text-align: justify;
+        margin-bottom: 25px;
+        flex-grow: 1;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        font-size: 1rem;
+      }
+
+      .post-id {
+        display: inline-block;
+        background: linear-gradient(135deg, #000428, #004e92);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        align-self: flex-start;
+        border: 1px solid rgba(0, 200, 255, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 100, 255, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .post-id::before {
+        content: "📌";
+        margin-right: 8px;
+        font-size: 1rem;
+      }
+
+      .post-card:hover .post-id {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 150, 255, 0.5);
+        background: linear-gradient(135deg, #001f3f, #0066cc);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Loading animation */
+      .loading {
+        text-align: center;
+        color: white;
+        font-size: 1.8rem;
+        grid-column: 1 / -1;
+        padding: 60px;
+        position: relative;
+      }
+
+      .loading::after {
+        content: "...";
+        animation: dots 1.5s steps(4, end) infinite;
+        font-size: 2rem;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      @keyframes dots {
+        0%,
+        20% {
+          content: ".";
+        }
+        40% {
+          content: "..";
+        }
+        60%,
+        100% {
+          content: "...";
+        }
+      }
+
+      /* Floating animation for decorative elements */
+      .floating-line {
+        position: fixed;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 150, 255, 0.1) 0%,
+          transparent 70%
+        );
+        z-index: 1;
+      }
+
+      .line1 {
+        top: -50px;
+        right: -50px;
+        animation: float 10s ease-in-out infinite;
+      }
+
+      .line2 {
+        bottom: -50px;
+        left: -50px;
+        animation: float 10s ease-in-out infinite reverse;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(30px, 30px) scale(1.2);
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+
+        #post-container {
+          grid-template-columns: 1fr;
+          padding: 15px;
+        }
+
+        button {
+          padding: 12px 25px;
+          font-size: 1rem;
+          width: 200px;
+        }
+
+        .post-card {
+          padding: 25px;
+        }
+
+        .post-card h2 {
+          font-size: 1.4rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .button-container {
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+        }
+
+        button {
+          width: 180px;
+          padding: 10px 20px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-line line1"></div>
+    <div class="floating-line line2"></div>
+
+    <div class="button-container">
+      <button onclick="loadData()">⚡ Load Data</button>
+      <button onclick="loadPost()">✨ Load Posts</button>
+    </div>
+
+    <h1>🌊 DEEP BLUE POSTS 🌊</h1>
+
+    <div id="post-container">
+      <div class="post-card">
+        <h2>Hello World</h2>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed
+          veritatis ipsam quos, repellendus rem odit harum! Praesentium
+          voluptates odio dicta?
+        </p>
+        <span class="post-id">Post #1</span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
