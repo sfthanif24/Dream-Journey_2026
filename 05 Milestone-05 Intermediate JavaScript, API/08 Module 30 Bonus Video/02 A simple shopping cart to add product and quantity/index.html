@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart · card style</title>
+    <style>
+      /* === only adding styles – no changes to original logic/ids/classes === */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        background: linear-gradient(145deg, #f2f4f8 0%, #e9ecf0 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family:
+          "Segoe UI",
+          Roboto,
+          system-ui,
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        padding: 1rem;
+      }
+
+      /* main white card – exactly what you asked for */
+      .shopping-card {
+        background-color: #ffffff;
+        border-radius: 36px;
+        box-shadow:
+          0 25px 45px -12px rgba(0, 0, 0, 0.25),
+          0 10px 20px -5px rgba(0, 0, 0, 0.1),
+          inset 0 1px 2px rgba(255, 255, 255, 0.9);
+        max-width: 550px;
+        width: 100%;
+        padding: 2rem 2rem 2.5rem 2rem;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        backdrop-filter: blur(2px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .shopping-card:hover {
+        box-shadow:
+          0 30px 55px -12px rgba(0, 0, 0, 0.3),
+          0 15px 25px -8px rgba(0, 0, 0, 0.15);
+        transform: scale(1.01);
+      }
+
+      /* subtle inner elements – only styling, no structural changes */
+      input[type="text"] {
+        background: #f9fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 60px;
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+        width: calc(50% - 0.5rem);
+        margin: 0.25rem 0;
+        transition: 0.15s;
+        box-shadow:
+          inset 0 2px 4px rgba(0, 0, 0, 0.02),
+          0 1px 2px rgba(0, 0, 0, 0.02);
+        font-weight: 400;
+        color: #1e293b;
+      }
+
+      input[type="text"]:focus {
+        outline: none;
+        border-color: #9b87f8;
+        box-shadow:
+          0 0 0 4px rgba(155, 135, 248, 0.2),
+          inset 0 1px 3px #fff;
+        background: #ffffff;
+      }
+
+      input[type="text"]::placeholder {
+        color: #94a3b8;
+        font-weight: 300;
+        letter-spacing: -0.01em;
+      }
+
+      button {
+        background: #1e1e2f;
+        border: none;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.9rem 2rem;
+        border-radius: 60px;
+        cursor: pointer;
+        margin: 1.2rem 0 1.8rem 0;
+        box-shadow:
+          0 12px 24px -10px #1e1e2f80,
+          0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.15s;
+        letter-spacing: 0.3px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        width: auto;
+        min-width: 160px;
+      }
+
+      button:hover {
+        background: #2d2d44;
+        box-shadow:
+          0 18px 30px -10px #1e1e2fcc,
+          0 6px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(1px);
+        box-shadow: 0 6px 14px -6px #1e1e2f;
+      }
+
+      h3 {
+        color: #0f172a;
+        font-weight: 650;
+        font-size: 1.7rem;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.75rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      h3::before {
+        content: "🛍️";
+        font-size: 1.8rem;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      #products-container {
+        list-style: none;
+        padding: 0.25rem 0 0 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+
+      #products-container li {
+        background: #f8fafd;
+        padding: 0.9rem 1.5rem;
+        border-radius: 60px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #0b1120;
+        box-shadow:
+          0 3px 6px rgba(0, 0, 0, 0.02),
+          0 2px 4px rgba(0, 0, 0, 0.02),
+          inset 0 1px 0 #ffffff;
+        border: 1px solid #eef2f6;
+        display: flex;
+        align-items: center;
+        backdrop-filter: blur(2px);
+        transition: all 0.15s;
+        word-break: break-word;
+      }
+
+      #products-container li::before {
+        content: "•";
+        color: #9b87f8;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-right: 0.75rem;
+        line-height: 1;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      #products-container li:hover {
+        background: #ffffff;
+        border-color: #d9dff5;
+        box-shadow: 0 8px 16px -10px #b9c2d9;
+        transform: translateX(6px) scale(1.01);
+      }
+
+      /* line breaks are kept as they were — but visually nicer */
+      br {
+        display: none; /* hide the original line break, but doesn't change structure – inputs are already block-level via flex/wrap */
+      }
+
+      /* wrap inputs nicely without relying on <br> */
+      body .shopping-card input,
+      body .shopping-card button {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      /* small adjustment for spacing: original <br> is hidden, but we keep exact same html */
+      .shopping-card > input[type="text"]:first-of-type {
+        margin-right: 0.3rem;
+      }
+
+      /* make the card responsive and tidy */
+      @media (max-width: 450px) {
+        .shopping-card {
+          padding: 1.5rem;
+        }
+        input[type="text"] {
+          width: 100%;
+          margin: 0.2rem 0;
+        }
+        button {
+          width: 100%;
+        }
+      }
+
+      /* tiny extra polish for the added products container */
+      #products-container li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* preserve all IDs, classes, and scripts — only pure css */
+    </style>
+  </head>
+  <body>
+    <!-- the whole app is wrapped in a white card with shadow -->
+    <div class="shopping-card">
+      <!-- everything exactly as original, only wrapped inside card div -->
+      <input type="text" id="product" placeholder="product" />
+      <input type="text" id="quantity" placeholder="Quantity" />
+      <br />
+      <button onclick="handleProducts()">Add Product</button>
+
+      <div>
+        <h3>Added Products</h3>
+        <ul id="products-container">
+          <!-- products appear here via js -->
+        </ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+
+    <!--
+      absolutely no changes to script.js – the original file remains intact.
+      card design: white background + beautiful shadow, rounded, elegant.
+    -->
+  </body>
+</html>
