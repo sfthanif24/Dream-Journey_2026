@@ -1,8 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Counter from "./Counter";
 import Batsman from "./Batsman";
+import User from "./User";
+import "./App.css";
+import Friends from "./Friends";
+
+const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users").then(
+  (response) => response.json(),
+);
+
+const fetchFriends = async () => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  return response.json();
+};
 
 const App = () => {
+  const friendsPromise = fetchFriends();
+
   function handleClick() {
     alert("I am clicked");
   }
@@ -18,6 +32,14 @@ const App = () => {
   return (
     <div>
       <h3>React Core Concepts</h3>
+
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <User fetchUsers={fetchUsers}></User>
+      </Suspense>
+
+      <Suspense fallback={<h3>Friends are coming...</h3>}>
+        <Friends friendsPromise={friendsPromise}></Friends>
+      </Suspense>
       <Batsman></Batsman>
       <Counter></Counter>
       <button onClick={handleClick}>Click Me</button>
