@@ -1,4 +1,5 @@
 import React from "react";
+import Counter from "./Counter";
 
 const App = () => {
   function handleClick() {
@@ -15,6 +16,7 @@ const App = () => {
   };
   return (
     <div>
+      <Counter></Counter>
       <button onClick={handleClick}>Click me</button>
       <button
         onClick={function handleClick2() {
