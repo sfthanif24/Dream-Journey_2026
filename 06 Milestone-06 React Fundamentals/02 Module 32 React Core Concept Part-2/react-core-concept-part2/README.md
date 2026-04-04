@@ -1,16 +1,29 @@
-# React + Vite
+# Module 32: React Core Concepts (Part 2)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This module focuses on more advanced React concepts including state management, event handling, and side effects (API calls).
 
-Currently, two official plugins are available:
+## Key Topics Practiced:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Event Handling**:
+  - Different ways to attach click handlers (`onClick`).
+  - Passing parameters to event handlers using arrow functions.
+- **State Management (useState)**:
+  - `Counter.jsx`: Managing a simple numeric state.
+  - `Players.jsx`: Managing dynamic state for a sports team.
+- **Side Effects (useEffect & Fetch)**:
+  - Fetching data from external APIs (JSONPlaceholder).
+  - Modern data fetching patterns:
+    - Standard `fetch` with `.then()`.
+    - `async/await` patterns.
+    - **Suspense & Promises**: Using `<Suspense>` to handle loading states for promises.
+- **Component Composition**:
+  - `Friends.jsx` & `Friend.jsx`: Displaying a list of users.
+  - `Posts.jsx` & `Post.jsx`: Displaying a list of blog posts.
 
-## React Compiler
+## Components Created:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `Counter.jsx`: Increment/Decrement state logic.
+- `Players.jsx`: Team score/player count management.
+- `User.jsx`, `Friends.jsx`, `Friend.jsx`: Practicing API data maps and loading states.
+- `Posts.jsx`, `Post.jsx`: Handling larger datasets from APIs.
+- `Batsman.jsx`: Practice component for state and events.
