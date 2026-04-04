@@ -5,6 +5,7 @@ import Users from "./Users";
 import { Suspense } from "react";
 import Friends from "./Friends";
 import Posts from "./Posts";
+import Players from "./Players";
 
 const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users").then(
   (res) => res.json(),
@@ -38,6 +39,7 @@ const App = () => {
   };
   return (
     <div>
+      <Players></Players>
       <Suspense fallback={<p>Posts are coming...</p>}>
         <Posts postsPromise={postsPromise}></Posts>
       </Suspense>
