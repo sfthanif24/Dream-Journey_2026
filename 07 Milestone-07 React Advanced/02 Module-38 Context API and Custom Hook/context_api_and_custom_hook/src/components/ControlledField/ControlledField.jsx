@@ -4,13 +4,27 @@ const ControlledField = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitted");
+
+    if (password.length < 6) {
+      setError("Password must be 6 characters");
+    } else {
+      setError("");
+    }
   };
 
-  const [password, setPassword] = useState('secret');
+  const [password, setPassword] = useState("secret");
+  const [error, setError] = useState("");
 
   const handlePassword = (e) => {
     console.log(e.target.value);
-  }
+    setPassword(e.target.value);
+
+    // if (password.length < 6) {
+    //   setError("Password must be 6 characters");
+    // }else{
+    //     setError("");
+    // }
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -28,6 +42,7 @@ const ControlledField = () => {
         <br />
         <input type="submit" value="Submit" />
       </form>
+      <p style={{ color: "red" }}>{error}</p>
     </div>
   );
 };
