@@ -12,6 +12,7 @@ const ControlledField = () => {
     }
   };
 
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("secret");
   const [error, setError] = useState("");
 
