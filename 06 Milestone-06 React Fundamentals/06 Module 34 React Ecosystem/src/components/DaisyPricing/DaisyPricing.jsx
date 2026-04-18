@@ -37,6 +37,7 @@ const DaisyPricing = ({ pricing }) => {
           <button className="btn btn-primary btn-block">Subscribe</button>
         </div>
       </div>
+      
     </div>
   );
 };
