@@ -1,13 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
 import DaisyNav from "./components/DaisyNav/DaisyNav";
 import Navbar from "./components/Navbar/Navbar";
+import PricingOptions from "./components/PricingOptions/PricingOptions";
 
+const pricingPromise = fetch("pricingData.json").then((res) => res.json());
 const App = () => {
   return (
-    <div>
-      <Navbar></Navbar>
-      <DaisyNav></DaisyNav>
-    </div>
+    <>
+      <header>
+        <Navbar></Navbar>
+        {/* <DaisyNav></DaisyNav> */}
+      </header>
+      <main>
+        <Suspense fallback={<span className="loading loading-spinner"></span>}>
+          <PricingOptions pricingPromise={pricingPromise}></PricingOptions>
+        </Suspense>
+      </main>
+    </>
   );
 };
 

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Basic Plan",
+    "price": "$9.99",
+    "id": 1,
+    "description": "Ideal for individuals who want to stay fit with essential gym access.",
+    "features": [
+      "Access to gym facilities",
+      "Unlimited ]use of cardio equipment",
+      "1 group fitness class per week",
+      "Free Wi-Fi",
+      "Locker room access"
+    ]
+  },
+  {
+    "name": "Standard Plan",
+    "price": "$19.99",
+    "id": 2,
+    "description": "Perfect for fitness enthusiasts seeking a comprehensive workout experience.",
+    "features": [
+      "All Basic Plan features",
+      "Unlimited group fitness classes",
+      "Access to swimming pool and sauna",
+      "Personal training session (1 per month)",
+      "Priority booking for classes"
+    ]
+  },
+  {
+    "name": "Premium Plan",
+    "price": "$29.99",
+    "id": 3,
+    "popular": true,
+    "description": "Designed for those who want the ultimate fitness experience with exclusive perks.",
+    "features": [
+      "All Standard Plan features",
+      "Unlimited personal training sessions",
+      "Access to VIP lounge and spa facilities",
+      "Nutrition consultation (1 per month)",
+      "Exclusive merchandise discounts"
+    ]
+  }
+]
